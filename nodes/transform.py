@@ -44,7 +44,8 @@ class MTB_TransformImage:
                     {"default": "edge"},
                 ),
                 "constant_color": (
-                    "STRING", {"default": "#000000", "multiline": False},
+                    "STRING",
+                    {"default": "#ffffff"},
                 ),
             },
             "optional": {
@@ -145,12 +146,8 @@ class MTB_TransformImage:
             max(0, pw - x),
             max(0, ph - y),
         ]
-        try:
-            constant_color = hex_to_rgb(constant_color)
-        except Exception as e:
-            print(f"Invalid hex color input '{constant_color}', defaulting to black.")
-            constant_color = (0, 0, 0)
-        # constant_color = hex_to_rgb(constant_color)
+
+        constant_color = hex_to_rgb(constant_color)
         log.debug(f"Fill Tuple: {constant_color}")
 
         for img in tensor2pil(image):
